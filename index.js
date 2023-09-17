@@ -1,5 +1,6 @@
 module.exports = {
   parser: "@typescript-eslint/parser",
+  env: { browser: true, es2020: true },
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
@@ -12,9 +13,10 @@ module.exports = {
     "plugin:react/jsx-runtime",
   ],
   parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: true,
+    tsconfigRootDir: __dirname,
   },
   settings: {
     "import/parsers": {
@@ -25,6 +27,7 @@ module.exports = {
       version: "detect",
     },
   },
+  plugins: ['react-refresh'],
   rules: {
     // Enforce a convention in the order of import statements
     "import/order": [
@@ -56,9 +59,7 @@ module.exports = {
       }
     ],
     // Require explicit return types on functions and class methods.
-    "@typescript-eslint/explicit-function-return-type": [
-      "error"
-    ],
+    "@typescript-eslint/explicit-function-return-type": "off",
     // Require explicit accessibility modifiers on class properties and methods
     "@typescript-eslint/explicit-member-accessibility": [
       "error",
@@ -125,5 +126,6 @@ module.exports = {
     "no-return-await": "error",
     // Disallow shorthand type conversion
     "no-implicit-coercion": "error",
+    "semi": ["error", "never"]
   }
 };
